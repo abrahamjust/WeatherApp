@@ -1,0 +1,61 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #333333;
+}
+
+.Wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.Input {
+    width: 350px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Search img {
+    width: 20px;
+    height: 20px;
+}
+
+.Content {
+    flex: 1;
+    margin-top: 20px;
+    display: grid;
+    grid-template-rows: 2fr / 1fr / 1fr;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.MainInfo {
+    margin: 10px;
+    background-color: white;
+    grid-area: 1 / 1 / 2 / 3;
+    border: 2px solid black;
+}
+
+.Forcast {
+    margin: 5px;
+    border-radius: 5px;
+    background-color: grey;
+}
