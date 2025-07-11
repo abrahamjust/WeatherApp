@@ -2,7 +2,6 @@ import './styles.css';
 
 let input = document.getElementById('Loc');
 let search = document.querySelector('.Search');
-let location;
 const key = 'BCE7ESE9SXLGLGPQH56C9L43V';
 
 let MainForcast = document.querySelector('.MainForcast');
@@ -13,22 +12,24 @@ let MainFahrenheit = document.querySelector('.MainFahrenheit');
 let MainHumidity = document.querySelector('.MainHumidity');
 let MainWind = document.querySelector('.MainWind');
 let mainIcon = document.getElementById('mainIcon');
+const loading = document.getElementById('loader');
 
 search.addEventListener('click', (event) => {
     event.preventDefault();
-    location = input.value;
-    console.log(location);
-    getData();
+    let location = input.value;
+    getData(location);
 });
 
-async function getData() {
+async function getData(location) {
     try {
+        loading.classList.remove('Hidden');
         const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${key}`);
         const data = await response.json();
-        console.log(data);
         updateData(data);
     } catch (error) {
         alert(`City not found: ${error}`);
+    } finally {
+        loading.classList.add('Hidden');
     }
 }
 
@@ -64,6 +65,9 @@ async function getData() {
             console.warn(`Icon not found: ${iconName}`, err);
             Forcast[i].querySelector('img').src = './assets/default.svg';
         }
-
     }
 }
+
+window.addEventListener('load', () => {
+    getData('Chennai');
+});
